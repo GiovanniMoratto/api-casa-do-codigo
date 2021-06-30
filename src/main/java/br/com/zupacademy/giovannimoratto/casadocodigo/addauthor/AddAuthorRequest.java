@@ -2,18 +2,22 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.addauthor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
-public class AuthorFormDTO {
+import org.hibernate.validator.constraints.Length;
+
+import br.com.zupacademy.giovannimoratto.casadocodigo.validation.Unique;
+
+public class AddAuthorRequest {
 
 	/* Attributes */
 	@NotBlank
 	private String name;
 	@NotBlank
 	@Email
+	@Unique(attribute_name = "email", class_name = AuthorModel.class)
 	private String email;
 	@NotBlank
-    @Size(max = 400)
+    @Length(max = 400)
 	private String description;
 
 	/* Getters and Setters */

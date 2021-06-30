@@ -19,9 +19,9 @@ public class AuthorController {
 
 	@PostMapping
 	@Transactional
-	public void addAuthor(@RequestBody @Valid AuthorFormDTO formDTO) {
+	public void addAuthor(@RequestBody @Valid AddAuthorRequest request) {
 
-		AuthorModel author = formDTO.toModel();
+		AuthorModel author = request.toModel();
 		em.persist(author);
 	}
 }
