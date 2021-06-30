@@ -23,16 +23,12 @@ public class AuthorModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-
 	@Column(name = "nome", nullable = false)
 	private String name;
-
 	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-
 	@Column(name = "descricao", length = 400, nullable = false)
 	private String description;
-
 	@CreationTimestamp
 	@Column(name = "data_criacao")
 	private LocalDateTime createdAt;
@@ -40,18 +36,14 @@ public class AuthorModel {
 	/* Constructor */
 	@Deprecated
 	public AuthorModel() {
-		
+
 	}
-	
+
 	public AuthorModel(@NotBlank String name, @NotBlank @Email String email,
 			@NotBlank @Size(max = 400) String description) {
 		this.name = name;
 		this.email = email;
 		this.description = description;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 }

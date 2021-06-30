@@ -2,8 +2,7 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.addauthor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.Unique;
 
@@ -17,7 +16,7 @@ public class AddAuthorRequest {
 	@Unique(attribute_name = "email", class_name = AuthorModel.class)
 	private String email;
 	@NotBlank
-    @Length(max = 400)
+    @Size(max = 400)
 	private String description;
 
 	/* Getters and Setters */
