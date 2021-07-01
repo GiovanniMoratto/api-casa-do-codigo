@@ -8,7 +8,7 @@ public class AddCategoryRequest {
 
 	/* Attributes */
 	@NotBlank
-	@Unique(attribute_name = "name", class_name = CategoryModel.class)
+	@Unique(attributeName = "name", className = CategoryModel.class)
 	private String name;
 
 	/* Getters and Setters */

@@ -13,7 +13,7 @@ public class AddAuthorRequest {
 	private String name;
 	@NotBlank
 	@Email
-	@Unique(attribute_name = "email", class_name = AuthorModel.class)
+	@Unique(attributeName = "email", className = AuthorModel.class)
 	private String email;
 	@NotBlank
 	@Size(max = 400)

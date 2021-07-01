@@ -16,8 +16,8 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
 	@Override
 	public void initialize(Unique constraintAnnotation) {
-		object = constraintAnnotation.class_name().getSimpleName();
-		field = constraintAnnotation.attribute_name();
+		object = constraintAnnotation.className().getSimpleName();
+		field = constraintAnnotation.attributeName();
 	}
 
 	@Override
