@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.addauthor;
+package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,4 +24,5 @@ public class AuthorController {
 		AuthorModel author = request.toModel();
 		em.persist(author);
 	}
+
 }

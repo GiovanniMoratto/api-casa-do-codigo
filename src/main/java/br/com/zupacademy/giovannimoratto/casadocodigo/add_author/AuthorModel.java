@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.addauthor;
+package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
 
 import java.time.LocalDateTime;
 

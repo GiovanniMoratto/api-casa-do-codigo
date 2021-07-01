@@ -15,14 +15,18 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Retention(RUNTIME)
-@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
-@Constraint(validatedBy = {UniqueValidator.class})
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Constraint(validatedBy = { UniqueValidator.class })
 public @interface Unique {
-	
+
 	Class<?> class_name();
+
 	String attribute_name();
+
 	String message() default "This value already exists!";
-	
+
 	Class<?>[] groups() default {};
+
 	Class<? extends Payload>[] payload() default {};
+
 }

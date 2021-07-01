@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.addauthor;
+package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ public class AddAuthorRequest {
 	@Unique(attribute_name = "email", class_name = AuthorModel.class)
 	private String email;
 	@NotBlank
-    @Size(max = 400)
+	@Size(max = 400)
 	private String description;
 
 	/* Getters and Setters */
@@ -43,9 +43,10 @@ public class AddAuthorRequest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	/* Methods */
 	public AuthorModel toModel() {
 		return new AuthorModel(name, email, description);
 	}
+
 }

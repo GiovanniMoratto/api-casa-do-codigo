@@ -1,11 +1,11 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.handler_exception;
+package br.com.zupacademy.giovannimoratto.casadocodigo.exception_handler;
 
 public class FilterExceptionDTO {
 
 	/* Attributes */
 	private String field;
 	private String error;
-	
+
 	/* Constructor */
 	public FilterExceptionDTO(String field, String error) {
 		super();
@@ -21,5 +21,5 @@ public class FilterExceptionDTO {
 	public String getError() {
 		return error;
 	}
-	
+
 }

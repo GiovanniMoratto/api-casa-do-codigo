@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.handler_exception;
+package br.com.zupacademy.giovannimoratto.casadocodigo.exception_handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,4 +33,5 @@ public class HandlerExceptionValidation {
 		});
 		return filterException;
 	}
+
 }
