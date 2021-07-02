@@ -1,28 +1,27 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
 
+import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 import javax.validation.constraints.NotBlank;
-
-import br.com.zupacademy.giovannimoratto.casadocodigo.validation.Unique;
 
 public class AddCategoryRequest {
 
-	/* Attributes */
-	@NotBlank
-	@Unique(attributeName = "name", className = CategoryModel.class)
-	private String name;
+    /* Attributes */
+    @NotBlank
+    @UniqueValue(attributeName = "name", className = CategoryModel.class)
+    private String name;
 
-	/* Getters and Setters */
-	public String getName() {
-		return name;
-	}
+    /* Getters and Setters */
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/* Methods */
-	public CategoryModel toModel() {
-		return new CategoryModel(name);
-	}
+    /* Methods */
+    public CategoryModel toModel() {
+        return new CategoryModel(name);
+    }
 
 }

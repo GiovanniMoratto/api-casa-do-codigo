@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.validation;
+package br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -13,17 +13,15 @@ import javax.validation.Payload;
 @Documented
 @Retention(RUNTIME)
 @Target({ FIELD })
-@Constraint(validatedBy = { UniqueValidator.class })
-public @interface Unique {
+@Constraint(validatedBy = { ExistsIdValidator.class })
+public @interface ExistsId {
 
-	Class<?> className();
+    Class<?> className();
 
-	String attributeName();
+    String message() default "This ID does not exists!";
 
-	String message() default "This value already exists!";
+    Class<?>[] groups() default {};
 
-	Class<?>[] groups() default {};
-
-	Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 
 }
