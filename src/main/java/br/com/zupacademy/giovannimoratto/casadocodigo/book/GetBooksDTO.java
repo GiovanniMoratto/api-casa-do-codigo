@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 /**
  * @Author giovanni.moratto
  */
+
 public class GetBooksDTO {
 
     private Long id;
@@ -27,20 +28,12 @@ public class GetBooksDTO {
         return books.stream().map(GetBooksDTO::new).collect(Collectors.toList());
     }
 
-    /* Getters and Setters */
+    /* Getters */
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }
