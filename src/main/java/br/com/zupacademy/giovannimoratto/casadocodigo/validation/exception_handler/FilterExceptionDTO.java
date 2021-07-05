@@ -17,14 +17,20 @@ public class FilterExceptionDTO {
         this.error = error;
     }
 
-    /* Getters */
+    /* Getters and Setters */
     public String getField() {
         return field;
     }
 
-    public String getError() {
+    public void setField(String field) {
+        this.field = field;
+    }
 
+    public String getError() {
         return error;
     }
 
+    public void setError(String error) {
+        this.error = error;
+    }
 }

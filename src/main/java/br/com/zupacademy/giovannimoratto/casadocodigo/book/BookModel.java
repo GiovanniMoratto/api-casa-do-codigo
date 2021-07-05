@@ -1,7 +1,7 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_book;
+package br.com.zupacademy.giovannimoratto.casadocodigo.book;
 
-import br.com.zupacademy.giovannimoratto.casadocodigo.add_author.AuthorModel;
-import br.com.zupacademy.giovannimoratto.casadocodigo.add_category.CategoryModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.author.AuthorModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.category.CategoryModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -61,7 +61,7 @@ public class BookModel {
 
     }
 
-    public BookModel(@NotBlank String title,  @NotBlank  @Size(max = 500) String overview,
+    public BookModel(@NotBlank String title, @NotBlank @Size(max = 500) String overview,
                      String summary, @NotNull @Min(20) BigDecimal price,
                      @NotNull @Min(100) Integer numberOfPages, @NotBlank String isbn,
                      @Future @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy") LocalDate publicationDate,
@@ -77,4 +77,12 @@ public class BookModel {
         this.author = author;
     }
 
+    /* Getters for GetBookDTO.class */
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
 }

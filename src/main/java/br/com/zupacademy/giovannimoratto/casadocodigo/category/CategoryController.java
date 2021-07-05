@@ -1,12 +1,11 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.category;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -18,15 +17,13 @@ import javax.validation.Valid;
 @RequestMapping("/nova-categoria")
 public class CategoryController {
 
-    @PersistenceContext
-    private EntityManager em;
+    @Autowired
+    private CategoryRepository repository;
 
     @PostMapping
     @Transactional
     public void addCategory(@RequestBody @Valid AddCategoryRequest request) {
-
         CategoryModel category = request.toModel();
-        em.persist(category);
+        repository.save(category);
     }
-
 }

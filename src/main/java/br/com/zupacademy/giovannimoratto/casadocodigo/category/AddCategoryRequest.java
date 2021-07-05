@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.category;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 
@@ -28,5 +28,4 @@ public class AddCategoryRequest {
     public CategoryModel toModel() {
         return new CategoryModel(name);
     }
-
 }

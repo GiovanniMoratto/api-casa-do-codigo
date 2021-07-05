@@ -34,13 +34,8 @@ public class ExistsIdValidator implements ConstraintValidator<ExistsId, Long> {
         Query query = em.createQuery("SELECT 1 FROM " + object + " WHERE ID = :VALUE");
         query.setParameter("VALUE", id);
 
-        if (!query.getResultList().isEmpty()) {
-            exists = true;
-        } else {
-            exists = false;
-        }
+        exists = !query.getResultList().isEmpty();
 
         return exists;
     }
-
 }

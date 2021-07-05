@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
+package br.com.zupacademy.giovannimoratto.casadocodigo.author;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -48,5 +48,4 @@ public class AuthorModel {
         this.email = email;
         this.description = description;
     }
-
 }

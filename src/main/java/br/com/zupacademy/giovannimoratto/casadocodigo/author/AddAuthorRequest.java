@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
+package br.com.zupacademy.giovannimoratto.casadocodigo.author;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 
@@ -52,5 +52,4 @@ public class AddAuthorRequest {
     public AuthorModel toModel() {
         return new AuthorModel(name, email, description);
     }
-
 }

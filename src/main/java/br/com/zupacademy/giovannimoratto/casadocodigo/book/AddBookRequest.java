@@ -1,15 +1,18 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_book;
+package br.com.zupacademy.giovannimoratto.casadocodigo.book;
 
-import br.com.zupacademy.giovannimoratto.casadocodigo.add_author.AuthorModel;
-import br.com.zupacademy.giovannimoratto.casadocodigo.add_category.CategoryModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.author.AuthorModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.author.AuthorRepository;
+import br.com.zupacademy.giovannimoratto.casadocodigo.category.CategoryModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.category.CategoryRepository;
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.ExistsId;
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * @Author giovanni.moratto
@@ -118,12 +121,21 @@ public class AddBookRequest {
     }
 
     /* Methods */
-    public BookModel toModel(EntityManager em) {
+    public BookModel toModel(AuthorRepository authorRepository, CategoryRepository categoryRepository)
+            throws ResponseStatusException {
+        Optional<CategoryModel> category = categoryRepository.findById(idCategory);
+        Optional<AuthorModel> author = authorRepository.findById(idAuthor);
 
-        CategoryModel category = em.find(CategoryModel.class, this.idCategory);
-        AuthorModel author = em.find(AuthorModel.class, this.idAuthor);
-
-        return new BookModel(title, overview, summary, price, numberOfPages, isbn, publicationDate, category, author);
+        return new BookModel(
+                title,
+                overview,
+                summary,
+                price,
+                numberOfPages,
+                isbn,
+                publicationDate,
+                category.get(),
+                author.get()
+        );
     }
-
 }

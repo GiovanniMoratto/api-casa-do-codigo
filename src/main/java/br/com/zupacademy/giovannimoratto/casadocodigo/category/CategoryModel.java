@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.category;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +17,7 @@ public class CategoryModel {
     @Column(name = "`ID`")
     private Long id;
     @NotBlank
-    @Column(name = "`NOME`", nullable=false, unique=true)
+    @Column(name = "`NOME`", nullable = false, unique = true)
     private String name;
 
     /* Constructor */
