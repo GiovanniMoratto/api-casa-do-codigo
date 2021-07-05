@@ -28,4 +28,5 @@ public class CategoryController {
         CategoryModel category = request.toModel();
         em.persist(category);
     }
+
 }

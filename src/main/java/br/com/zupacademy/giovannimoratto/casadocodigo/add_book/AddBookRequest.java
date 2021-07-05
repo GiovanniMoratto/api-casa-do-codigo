@@ -45,7 +45,6 @@ public class AddBookRequest {
     private Long idAuthor;
 
     /* Getters and Setters */
-
     public String getTitle() {
         return title;
     }

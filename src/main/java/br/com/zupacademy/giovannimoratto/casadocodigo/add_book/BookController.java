@@ -28,4 +28,5 @@ public class BookController {
         BookModel book = request.toModel(em);
         em.persist(book);
     }
+
 }
