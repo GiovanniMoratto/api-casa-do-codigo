@@ -1,7 +1,12 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
+
 import javax.validation.constraints.NotBlank;
+
+/**
+ * @Author giovanni.moratto
+ */
 
 public class AddCategoryRequest {
 

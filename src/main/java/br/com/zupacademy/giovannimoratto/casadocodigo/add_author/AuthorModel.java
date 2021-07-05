@@ -1,9 +1,16 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
 
 import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+
+/**
+ * @Author giovanni.moratto
+ */
 
 @Entity
 @Table(name = "`TB_AUTORES`")
@@ -35,7 +42,8 @@ public class AuthorModel {
 
     }
 
-    public AuthorModel(String name, String email, String description) {
+    public AuthorModel(@NotBlank String name, @NotBlank @Email String email,
+                       @NotBlank @Size(max = 400) String description) {
         this.name = name;
         this.email = email;
         this.description = description;

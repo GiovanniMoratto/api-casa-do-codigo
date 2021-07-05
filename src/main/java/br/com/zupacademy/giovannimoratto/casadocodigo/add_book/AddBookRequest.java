@@ -1,15 +1,19 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.add_book;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import javax.persistence.EntityManager;
-import javax.validation.constraints.*;
-
-import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
-import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.ExistsId;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.zupacademy.giovannimoratto.casadocodigo.add_author.AuthorModel;
 import br.com.zupacademy.giovannimoratto.casadocodigo.add_category.CategoryModel;
+import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.ExistsId;
+import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.EntityManager;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+/**
+ * @Author giovanni.moratto
+ */
 
 public class AddBookRequest {
 
@@ -41,6 +45,7 @@ public class AddBookRequest {
     private Long idAuthor;
 
     /* Getters and Setters */
+
     public String getTitle() {
         return title;
     }
@@ -121,4 +126,5 @@ public class AddBookRequest {
 
         return new BookModel(title, overview, summary, price, numberOfPages, isbn, publicationDate, category, author);
     }
+
 }

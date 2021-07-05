@@ -1,5 +1,9 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.validation.exception_handler;
 
+/**
+ * @Author giovanni.moratto
+ */
+
 public class FilterExceptionDTO {
 
     /* Attributes */

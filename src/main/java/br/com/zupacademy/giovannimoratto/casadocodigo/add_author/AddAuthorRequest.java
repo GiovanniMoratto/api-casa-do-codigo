@@ -1,7 +1,14 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.add_author;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
-import javax.validation.constraints.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+/**
+ * @Author giovanni.moratto
+ */
 
 public class AddAuthorRequest {
 

@@ -6,6 +6,10 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * @Author giovanni.moratto
+ */
+
 public class ExistsIdValidator implements ConstraintValidator<ExistsId, Long> {
 
     @PersistenceContext

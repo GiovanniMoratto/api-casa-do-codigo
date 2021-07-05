@@ -3,6 +3,10 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.add_category;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * @Author giovanni.moratto
+ */
+
 @Entity
 @Table(name = "`TB_CATEGORIAS`")
 public class CategoryModel {

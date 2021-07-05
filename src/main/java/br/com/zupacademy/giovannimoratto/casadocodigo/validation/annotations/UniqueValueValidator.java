@@ -1,8 +1,16 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations;
 
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.*;
-import javax.validation.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+/**
+ * @Author giovanni.moratto
+ */
 
 public class UniqueValueValidator implements ConstraintValidator<UniqueValue, String> {
 
@@ -23,8 +31,6 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, St
     @Transactional
     public boolean isValid(String value, ConstraintValidatorContext context) {
 
-        boolean uniqueValue = false;
-
         if (value == null) {
             return false;
         }
@@ -32,9 +38,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, St
         Query query = em.createQuery("SELECT 1 FROM " + object + " WHERE " + field + " = :VALUE");
         query.setParameter("VALUE", value);
 
-        uniqueValue = query.getResultList().isEmpty();
-
-        return uniqueValue;
+        return query.getResultList().isEmpty();
     }
 
 }

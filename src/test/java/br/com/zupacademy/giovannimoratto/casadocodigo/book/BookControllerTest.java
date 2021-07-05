@@ -1,51 +1,61 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.book;
 
-import java.net.URI;
-
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@RunWith(SpringRunner.class)
+import java.net.URI;
+
+/**
+ * @Author giovanni.moratto
+ */
+
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureDataJpa
 @ActiveProfiles("test")
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BookControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
+    @Order(1)
     void createBookStatus200() throws Exception {
         URI uri = new URI("/novo-livro");
-        String json = "{"
-                + "\"title\":\"O Senhor dos Anéis\","
-                + "\"overview\":\"aaaaaaaaaaaaaaaaaaaaaa\","
-                + "\"summary\":\"aaaaaaaaaaaaaaaaaa\","
-                + "\"price\":50,"
-                + "\"numberOfPages\":500,"
-                + "\"isbn\":\"x\","
-                + "\"publicationDate\":\"12-12-2021\","
-                + "\"idCategory\":1,"
-                + "\"idAuthor\":1"
-                + "}";
+        String json = "{" +
+                "\"title\":\"O Senhor dos Anéis\"," +
+                "\"overview\":\"aaaaaaaaaaaaaaaaaaaaaa\"," +
+                "\"summary\":\"aaaaaaaaaaaaaaaaaa\"," +
+                "\"price\":50," +
+                "\"numberOfPages\":500," +
+                "\"isbn\":\"aaaaaaaaaaa\"," +
+                "\"publicationDate\":\"12-12-2021\",\"" +
+                "idCategory\":1," +
+                "\"idAuthor\":1" +
+                "}";
 
         mockMvc.perform(MockMvcRequestBuilders.post(uri)
-                .content(json).contentType(MediaType.APPLICATION_JSON))
+                .content(json)
+                .characterEncoding("UTF-8")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is(200));
     }
 
     @Test
+    @Order(2)
     void titleEmptyStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -66,6 +76,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(3)
     void titleUniqueStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -86,6 +97,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(4)
     void overviewEmptyStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -106,16 +118,13 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(5)
     void overviewSizeStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
+        String overview = "z".repeat(0);
         String json = "{"
                 + "\"title\":\"teste03\","
-                + "\"overview\":\"wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" +
-                "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\","
+                + "\"overview\":overview,"
                 + "\"summary\":\"aaaaaaaaaaaaaaaaaa\","
                 + "\"price\":50,"
                 + "\"numberOfPages\":500,"
@@ -131,6 +140,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(6)
     void priceNullStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -151,6 +161,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(7)
     void priceLowStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -171,6 +182,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(8)
     void numberOfPagesNullStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -191,6 +203,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(9)
     void numberOfPagesLowStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -211,6 +224,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(10)
     void isbnEmptyStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -231,6 +245,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(11)
     void isbnUniqueStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -251,6 +266,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(12)
     void publicationDateFutureStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -271,6 +287,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(13)
     void publicationDateFormatStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -291,6 +308,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(14)
     void idCategoryExistsStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
@@ -311,6 +329,7 @@ class BookControllerTest {
     }
 
     @Test
+    @Order(15)
     void idAuthorExistsStatus400() throws Exception {
         URI uri = new URI("/novo-livro");
         String json = "{"
