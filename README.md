@@ -1,3 +1,5 @@
-# Casa do Código
+# Bootcamp ZUP Orange Talents
 
-## Bootcamp ZUP Orange Talents - Implementing a Rest API for "Casa do Código" using Java, Spring Boot and Hibernate.
+## Casa do Código
+
+### Implementing a Rest API for "Casa do Código" using Java, Spring Boot and Hibernate.
