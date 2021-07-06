@@ -36,12 +36,13 @@ public class AuthorModel {
     @Column(name = "`DATA_CRIACAO`", nullable = false)
     private LocalDateTime createdAt;
 
-    /* Constructor */
+    /* Constructors */
+    //Default
     @Deprecated
     public AuthorModel() {
-
     }
 
+    //Method toModel() * AddAuthorRequest(DTO) to AuthorModel(Model)
     public AuthorModel(@NotBlank String name, @NotBlank @Email String email,
                        @NotBlank @Size(max = 400) String description) {
         this.name = name;
@@ -53,4 +54,5 @@ public class AuthorModel {
     public String getName() {
         return name;
     }
+
 }

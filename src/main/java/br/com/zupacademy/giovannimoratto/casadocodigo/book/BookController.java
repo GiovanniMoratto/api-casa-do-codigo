@@ -47,4 +47,5 @@ public class BookController {
         return book.map(bookModel -> ResponseEntity.ok(new BookDetailDTO(bookModel)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 }

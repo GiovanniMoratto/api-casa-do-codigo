@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.country;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 
@@ -8,17 +8,17 @@ import javax.validation.constraints.NotBlank;
  * @Author giovanni.moratto
  */
 
-public class AddCategoryRequest {
+public class AddCountryRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "name", className = CategoryModel.class)
+    @UniqueValue(attributeName = "name", className = CountryModel.class)
     private String name;
 
     /* Methods */
     //Convert request in Model
-    public CategoryModel toModel() {
-        return new CategoryModel(name);
+    public CountryModel toModel() {
+        return new CountryModel(name);
     }
 
     /* Getters and Setters */

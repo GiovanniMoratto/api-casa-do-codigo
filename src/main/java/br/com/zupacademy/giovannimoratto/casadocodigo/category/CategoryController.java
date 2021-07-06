@@ -14,7 +14,7 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/nova-categoria")
+@RequestMapping("/categoria")
 public class CategoryController {
 
     @Autowired
@@ -26,4 +26,5 @@ public class CategoryController {
         CategoryModel category = request.toModel();
         repository.save(category);
     }
+
 }

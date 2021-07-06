@@ -9,21 +9,24 @@ import java.util.stream.Collectors;
 
 public class GetBooksDTO {
 
+    /* Attributes */
     private Long id;
     private String name;
 
     /* Constructor */
+    //Default
     @Deprecated
     public GetBooksDTO() {
-
     }
 
+    //Get the BookModel values and set in GetBooksDTO
     public GetBooksDTO(BookModel bookModel) {
         this.id = bookModel.getId();
         this.name = bookModel.getTitle();
     }
 
     /* Methods */
+    //Convert a BookModel List in GetBooksDTO List
     public static List<GetBooksDTO> listConverter(List<BookModel> books) {
         return books.stream().map(GetBooksDTO::new).collect(Collectors.toList());
     }
@@ -36,4 +39,5 @@ public class GetBooksDTO {
     public String getName() {
         return name;
     }
+
 }

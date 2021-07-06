@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class BookDetailDTO {
 
+    /* Attributes */
     private String title;
     private String overview;
     private String summary;
@@ -24,11 +25,12 @@ public class BookDetailDTO {
     private String author;
 
     /* Constructors */
+    //Default
     @Deprecated
     public BookDetailDTO() {
-
     }
 
+    //Get the BookModel values and set in BookDetailDTO
     public BookDetailDTO(BookModel bookModel) {
         this.title = bookModel.getTitle();
         this.overview = bookModel.getOverview();
@@ -41,6 +43,7 @@ public class BookDetailDTO {
     }
 
     /* Methods */
+    //Convert a BookModel List in BookDetailDTO List
     public static List<BookDetailDTO> listDetailConverter(List<BookModel> books) {
         return books.stream().map(BookDetailDTO::new).collect(Collectors.toList());
     }
@@ -77,4 +80,5 @@ public class BookDetailDTO {
     public String getAuthor() {
         return author;
     }
+
 }

@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.author;
+package br.com.zupacademy.giovannimoratto.casadocodigo.country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,16 +14,17 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/autor")
-public class AuthorController {
+@RequestMapping("/pais")
+public class CountryController {
 
     @Autowired
-    private AuthorRepository repository;
+    private CountryRepository repository;
 
     @PostMapping
     @Transactional
-    public void addAuthor(@RequestBody @Valid AddAuthorRequest request) {
-        AuthorModel author = request.toModel();
-        repository.save(author);
+    public void addCountry(@RequestBody @Valid AddCountryRequest request) {
+        CountryModel country = request.toModel();
+        repository.save(country);
     }
+
 }

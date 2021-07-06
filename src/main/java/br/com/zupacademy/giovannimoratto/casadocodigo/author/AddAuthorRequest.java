@@ -23,6 +23,12 @@ public class AddAuthorRequest {
     @Size(max = 400)
     private String description;
 
+    /* Methods */
+    //Convert request in Model
+    public AuthorModel toModel() {
+        return new AuthorModel(name, email, description);
+    }
+
     /* Getters and Setters */
     public String getName() {
         return name;
@@ -48,8 +54,4 @@ public class AddAuthorRequest {
         this.description = description;
     }
 
-    /* Methods */
-    public AuthorModel toModel() {
-        return new AuthorModel(name, email, description);
-    }
 }

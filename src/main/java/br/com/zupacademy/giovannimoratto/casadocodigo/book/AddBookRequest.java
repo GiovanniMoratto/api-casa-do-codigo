@@ -47,6 +47,25 @@ public class AddBookRequest {
     @ExistsId(className = AuthorModel.class)
     private Long idAuthor;
 
+    /* Methods */
+    //Convert request in Model
+    public BookModel toModel(AuthorRepository authorRepository, CategoryRepository categoryRepository) throws ResponseStatusException {
+        Optional<CategoryModel> category = categoryRepository.findById(idCategory);
+        Optional<AuthorModel> author = authorRepository.findById(idAuthor);
+
+        return new BookModel(
+                title,
+                overview,
+                summary,
+                price,
+                numberOfPages,
+                isbn,
+                publicationDate,
+                category.get(),
+                author.get()
+        );
+    }
+
     /* Getters and Setters */
     public String getTitle() {
         return title;
@@ -120,22 +139,4 @@ public class AddBookRequest {
         this.idAuthor = idAuthor;
     }
 
-    /* Methods */
-    public BookModel toModel(AuthorRepository authorRepository, CategoryRepository categoryRepository)
-            throws ResponseStatusException {
-        Optional<CategoryModel> category = categoryRepository.findById(idCategory);
-        Optional<AuthorModel> author = authorRepository.findById(idAuthor);
-
-        return new BookModel(
-                title,
-                overview,
-                summary,
-                price,
-                numberOfPages,
-                isbn,
-                publicationDate,
-                category.get(),
-                author.get()
-        );
-    }
 }

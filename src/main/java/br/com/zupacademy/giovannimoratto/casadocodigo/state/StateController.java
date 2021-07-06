@@ -1,5 +1,6 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.author;
+package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 
+import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,16 +15,20 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/autor")
-public class AuthorController {
+@RequestMapping("/estado")
+public class StateController {
 
     @Autowired
-    private AuthorRepository repository;
+    private StateRepository stateRepository;
+
+    @Autowired
+    private CountryRepository countryRepository;
 
     @PostMapping
     @Transactional
-    public void addAuthor(@RequestBody @Valid AddAuthorRequest request) {
-        AuthorModel author = request.toModel();
-        repository.save(author);
+    public void addState(@RequestBody @Valid AddStateRequest request) {
+        StateModel state = request.toModel(countryRepository);
+        stateRepository.save(state);
     }
+
 }

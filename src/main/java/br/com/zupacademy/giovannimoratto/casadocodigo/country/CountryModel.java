@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.country;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,8 +8,8 @@ import javax.validation.constraints.NotBlank;
  */
 
 @Entity
-@Table(name = "`TB_CATEGORIAS`")
-public class CategoryModel {
+@Table(name = "`TB_PAISES`")
+public class CountryModel {
 
     /* Attributes */
     @Id
@@ -23,11 +23,11 @@ public class CategoryModel {
     /* Constructor */
     //Default
     @Deprecated
-    public CategoryModel() {
+    public CountryModel() {
     }
 
-    //Method toModel() * AddCategoryRequest(DTO) to CategoryModel(Model)
-    public CategoryModel(String name) {
+    //Method toModel() * AddCountryRequest(DTO) to CountryModel(Model)
+    public CountryModel(String name) {
         this.name = name;
     }
 

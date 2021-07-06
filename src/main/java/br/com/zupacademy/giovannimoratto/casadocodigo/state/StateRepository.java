@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.category;
+package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface CategoryRepository extends JpaRepository<CategoryModel, Long> {
+public interface StateRepository extends JpaRepository<StateModel, Long> {
 
 }

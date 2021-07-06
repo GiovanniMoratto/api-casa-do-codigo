@@ -56,11 +56,12 @@ public class BookModel {
     private AuthorModel author;
 
     /* Constructors */
+    //Default
     @Deprecated
     public BookModel() {
-
     }
 
+    //Method toModel() * AddBookRequest(DTO) to BookModel(Model)
     public BookModel(@NotBlank String title, @NotBlank @Size(max = 500) String overview,
                      String summary, @NotNull @Min(20) BigDecimal price,
                      @NotNull @Min(100) Integer numberOfPages, @NotBlank String isbn,
@@ -114,4 +115,5 @@ public class BookModel {
     public AuthorModel getAuthor() {
         return author;
     }
+
 }
