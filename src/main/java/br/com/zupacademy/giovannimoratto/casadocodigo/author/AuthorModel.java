@@ -48,4 +48,9 @@ public class AuthorModel {
         this.email = email;
         this.description = description;
     }
+
+    /* Getter for BookDetailDTO.class */
+    public String getName() {
+        return name;
+    }
 }

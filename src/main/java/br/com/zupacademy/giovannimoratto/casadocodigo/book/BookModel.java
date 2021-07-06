@@ -55,7 +55,7 @@ public class BookModel {
     @JoinColumn(name = "`AUTOR_ID`")
     private AuthorModel author;
 
-    /* Constructor */
+    /* Constructors */
     @Deprecated
     public BookModel() {
 
@@ -84,5 +84,34 @@ public class BookModel {
 
     public String getTitle() {
         return title;
+    }
+
+    /* Complete Getters for BookDatailDTO.class */
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Integer getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public AuthorModel getAuthor() {
+        return author;
     }
 }

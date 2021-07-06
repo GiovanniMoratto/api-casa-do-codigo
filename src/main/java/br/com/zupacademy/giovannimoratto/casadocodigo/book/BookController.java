@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author giovanni.moratto
@@ -38,5 +39,12 @@ public class BookController {
     public ResponseEntity<List<GetBooksDTO>> getBooks() {
         List<BookModel> books = bookRepository.findAll();
         return ResponseEntity.ok(GetBooksDTO.listConverter(books));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDetailDTO> getBookDetail(@PathVariable Long id) {
+        Optional<BookModel> book = bookRepository.findById(id);
+        return book.map(bookModel -> ResponseEntity.ok(new BookDetailDTO(bookModel)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
