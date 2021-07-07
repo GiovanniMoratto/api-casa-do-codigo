@@ -7,28 +7,28 @@ import java.util.stream.Collectors;
  * @Author giovanni.moratto
  */
 
-public class GetBooksDTO {
+public class BookResponse {
 
     /* Attributes */
     private Long id;
     private String name;
 
     /* Constructor */
-    //Default
+    // Default
     @Deprecated
-    public GetBooksDTO() {
+    public BookResponse() {
     }
 
-    //Get the BookModel values and set in GetBooksDTO
-    public GetBooksDTO(BookModel bookModel) {
+    // Get the BookModel.class values and set in BookResponse.class
+    public BookResponse(BookModel bookModel) {
         this.id = bookModel.getId();
         this.name = bookModel.getTitle();
     }
 
     /* Methods */
-    //Convert a BookModel List in GetBooksDTO List
-    public static List<GetBooksDTO> listConverter(List<BookModel> books) {
-        return books.stream().map(GetBooksDTO::new).collect(Collectors.toList());
+    // Convert a BookModel.class List in BookResponse.class List
+    public static List <BookResponse> listConverter(List <BookModel> books) {
+        return books.stream().map(BookResponse::new).collect(Collectors.toList());
     }
 
     /* Getters */

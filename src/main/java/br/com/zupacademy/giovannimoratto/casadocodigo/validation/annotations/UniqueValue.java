@@ -19,14 +19,14 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {UniqueValueValidator.class})
 public @interface UniqueValue {
 
-    Class<?> className();
+    Class <?> className();
 
     String attributeName();
 
     String message() default "This value already exists!";
 
-    Class<?>[] groups() default {};
+    Class <?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+    Class <? extends Payload>[] payload() default {};
 
 }

@@ -3,8 +3,6 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryModel;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 /**
  * @Author giovanni.moratto
@@ -17,24 +15,24 @@ public class StateModel {
     /* Attributes */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ID`")
+    @Column(name = "ID")
     private Long id;
-    @NotBlank
-    @Column(name = "`NOME`", nullable = false, unique = true)
+    @Column(name = "NOME", nullable = false, unique = true)
     private String name;
     @ManyToOne
-    @JoinColumn(name = "`PAIS_ID`")
+    @JoinColumn (name = "ID_PAIS", nullable = false)
     private CountryModel country;
 
     /* Constructor */
-    //Default
+    // Default - JPA
     @Deprecated
     public StateModel() {
     }
 
-    //Method toModel() * AddStateRequest(DTO) to StateModel(Model)
-    public StateModel(@NotBlank String name, @NotNull CountryModel country) {
+    // Method toModel() * StateRequest.class to StateModel.class
+    public StateModel(String name, CountryModel country) {
         this.name = name;
         this.country = country;
     }
+
 }

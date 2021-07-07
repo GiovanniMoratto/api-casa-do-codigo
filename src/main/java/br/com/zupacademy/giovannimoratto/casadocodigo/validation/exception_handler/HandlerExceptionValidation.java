@@ -26,10 +26,10 @@ public class HandlerExceptionValidation {
     /* Methods */
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<FilterExceptionDTO> handlerError(MethodArgumentNotValidException exception) {
+    public List <FilterExceptionDTO> handlerError(MethodArgumentNotValidException exception) {
 
-        List<FilterExceptionDTO> filterException = new ArrayList<>();
-        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
+        List <FilterExceptionDTO> filterException = new ArrayList <>();
+        List <FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e -> {
             String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
             FilterExceptionDTO error = new FilterExceptionDTO(e.getField(), message);
@@ -37,4 +37,5 @@ public class HandlerExceptionValidation {
         });
         return filterException;
     }
+
 }

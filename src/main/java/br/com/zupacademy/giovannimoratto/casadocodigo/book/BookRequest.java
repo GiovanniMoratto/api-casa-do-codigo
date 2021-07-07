@@ -18,7 +18,7 @@ import java.util.Optional;
  * @Author giovanni.moratto
  */
 
-public class AddBookRequest {
+public class BookRequest {
 
     /* Attributes */
     @NotBlank
@@ -38,6 +38,7 @@ public class AddBookRequest {
     @UniqueValue(attributeName = "isbn", className = BookModel.class)
     private String isbn;
     @Future
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate publicationDate;
     @NotNull
@@ -48,11 +49,20 @@ public class AddBookRequest {
     private Long idAuthor;
 
     /* Methods */
-    //Convert request in Model
+    // Convert BookRequest.class in BookModel.class
     public BookModel toModel(AuthorRepository authorRepository, CategoryRepository categoryRepository) throws ResponseStatusException {
-        Optional<CategoryModel> category = categoryRepository.findById(idCategory);
-        Optional<AuthorModel> author = authorRepository.findById(idAuthor);
-
+        Optional <CategoryModel> categoryOptional = categoryRepository.findById(idCategory);
+        Optional <AuthorModel> authorOptional = authorRepository.findById(idAuthor);
+        CategoryModel category;
+        AuthorModel author;
+        if (categoryOptional.isPresent() & authorOptional.isPresent()) {
+            category = categoryOptional.get();
+            author = authorOptional.get();
+        }
+        else {
+            category = categoryOptional.orElse(null);
+            author = authorOptional.orElse(null);
+        }
         return new BookModel(
                 title,
                 overview,
@@ -61,9 +71,10 @@ public class AddBookRequest {
                 numberOfPages,
                 isbn,
                 publicationDate,
-                category.get(),
-                author.get()
+                category,
+                author
         );
+
     }
 
     /* Getters and Setters */

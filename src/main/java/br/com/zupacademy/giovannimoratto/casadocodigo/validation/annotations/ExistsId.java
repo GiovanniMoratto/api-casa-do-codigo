@@ -19,12 +19,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {ExistsIdValidator.class})
 public @interface ExistsId {
 
-    Class<?> className();
+    Class <?> className();
 
     String message() default "This ID does not exists!";
 
-    Class<?>[] groups() default {};
+    Class <?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+    Class <? extends Payload>[] payload() default {};
 
 }

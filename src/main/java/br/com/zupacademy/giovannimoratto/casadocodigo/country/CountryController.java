@@ -14,15 +14,18 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/pais")
+@RequestMapping("/pais") // Endpoint
 public class CountryController {
 
+    /* Dependencies Injection */
     @Autowired
     private CountryRepository repository;
 
+    /* Methods */
+    // POST Request - Register a country
     @PostMapping
     @Transactional
-    public void addCountry(@RequestBody @Valid AddCountryRequest request) {
+    public void addCountry(@RequestBody @Valid CountryRequest request) {
         CountryModel country = request.toModel();
         repository.save(country);
     }

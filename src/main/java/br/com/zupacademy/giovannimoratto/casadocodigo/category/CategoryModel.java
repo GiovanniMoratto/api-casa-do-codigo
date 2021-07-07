@@ -1,7 +1,6 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.category;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 /**
  * @Author giovanni.moratto
@@ -14,19 +13,18 @@ public class CategoryModel {
     /* Attributes */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ID`")
+    @Column(name = "ID")
     private Long id;
-    @NotBlank
-    @Column(name = "`NOME`", nullable = false, unique = true)
+    @Column(name = "NOME", nullable = false, unique = true)
     private String name;
 
     /* Constructor */
-    //Default
+    // Default - JPA
     @Deprecated
     public CategoryModel() {
     }
 
-    //Method toModel() * AddCategoryRequest(DTO) to CategoryModel(Model)
+    // Method toModel() * CategoryRequest.class to CategoryModel.class
     public CategoryModel(String name) {
         this.name = name;
     }

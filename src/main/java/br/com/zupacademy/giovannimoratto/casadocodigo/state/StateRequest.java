@@ -14,7 +14,7 @@ import java.util.Optional;
  * @Author giovanni.moratto
  */
 
-public class AddStateRequest {
+public class StateRequest {
 
     /* Attributes */
     @NotBlank
@@ -22,16 +22,17 @@ public class AddStateRequest {
     private String name;
     @NotNull
     @ExistsId(className = CountryModel.class)
-    private Long idPais;
+    private Long idCountry;
 
     /* Methods */
-    //Convert request in Model
+    // Convert StateRequest.class in StateModel.class
     public StateModel toModel(CountryRepository countryRepository) throws ResponseStatusException {
-        Optional<CountryModel> country = countryRepository.findById(idPais);
-
+        Optional <CountryModel> countryOptional = countryRepository.findById(idCountry);
+        CountryModel country;
+        country = countryOptional.orElseGet(() -> countryOptional.orElse(null));
         return new StateModel(
                 name,
-                country.get()
+                country
         );
     }
 
@@ -45,11 +46,11 @@ public class AddStateRequest {
     }
 
     public Long getIdPais() {
-        return idPais;
+        return idCountry;
     }
 
     public void setIdPais(Long idPais) {
-        this.idPais = idPais;
+        this.idCountry = idPais;
     }
 
 }

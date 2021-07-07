@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
  * @Author giovanni.moratto
  */
 
-public class AddCountryRequest {
+public class CountryRequest {
 
     /* Attributes */
     @NotBlank
@@ -16,7 +16,7 @@ public class AddCountryRequest {
     private String name;
 
     /* Methods */
-    //Convert request in Model
+    // Convert CountryRequest.class in CountryModel.class
     public CountryModel toModel() {
         return new CountryModel(name);
     }

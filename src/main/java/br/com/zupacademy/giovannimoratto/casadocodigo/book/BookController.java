@@ -16,35 +16,40 @@ import java.util.Optional;
  */
 
 @RestController
-@RequestMapping("/livro")
+@RequestMapping("/livro") // Endpoint
 public class BookController {
 
+    /* Dependencies Injection */
     @Autowired
-    private BookRepository bookRepository;
+    BookRepository repository;
 
     @Autowired
-    private AuthorRepository authorRepository;
+    AuthorRepository authorRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
+    /* Methods */
+    // POST Request - Register a book
     @PostMapping
     @Transactional
-    public void addBook(@RequestBody @Valid AddBookRequest request) {
+    public void addBook(@RequestBody @Valid BookRequest request) {
         BookModel book = request.toModel(authorRepository, categoryRepository);
-        bookRepository.save(book);
+        repository.save(book);
     }
 
+    // GET Request - List all books
     @GetMapping
-    public ResponseEntity<List<GetBooksDTO>> getBooks() {
-        List<BookModel> books = bookRepository.findAll();
-        return ResponseEntity.ok(GetBooksDTO.listConverter(books));
+    public ResponseEntity <List <BookResponse>> getBooks() {
+        List <BookModel> books = repository.findAll();
+        return ResponseEntity.ok(BookResponse.listConverter(books));
     }
 
+    // GET Request - Search for a book
     @GetMapping("/{id}")
-    public ResponseEntity<BookDetailDTO> getBookDetail(@PathVariable Long id) {
-        Optional<BookModel> book = bookRepository.findById(id);
-        return book.map(bookModel -> ResponseEntity.ok(new BookDetailDTO(bookModel)))
+    public ResponseEntity <BookResponseDetail> getBookDetail(@PathVariable Long id) {
+        Optional <BookModel> book = repository.findById(id);
+        return book.map(bookModel -> ResponseEntity.ok(new BookResponseDetail(bookModel)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

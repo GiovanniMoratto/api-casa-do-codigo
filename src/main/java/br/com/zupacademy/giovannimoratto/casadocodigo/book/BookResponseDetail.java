@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * @Author giovanni.moratto
  */
 
-public class BookDetailDTO {
+public class BookResponseDetail {
 
     /* Attributes */
     private String title;
@@ -25,13 +25,13 @@ public class BookDetailDTO {
     private String author;
 
     /* Constructors */
-    //Default
+    // Default
     @Deprecated
-    public BookDetailDTO() {
+    public BookResponseDetail() {
     }
 
-    //Get the BookModel values and set in BookDetailDTO
-    public BookDetailDTO(BookModel bookModel) {
+    // Get the BookModel.class values and set in BookResponseDetail.class
+    public BookResponseDetail(BookModel bookModel) {
         this.title = bookModel.getTitle();
         this.overview = bookModel.getOverview();
         this.summary = bookModel.getSummary();
@@ -43,9 +43,9 @@ public class BookDetailDTO {
     }
 
     /* Methods */
-    //Convert a BookModel List in BookDetailDTO List
-    public static List<BookDetailDTO> listDetailConverter(List<BookModel> books) {
-        return books.stream().map(BookDetailDTO::new).collect(Collectors.toList());
+    // Convert a BookModel.class List in BookResponseDetail.class List
+    public static List <BookResponseDetail> listDetailConverter(List <BookModel> books) {
+        return books.stream().map(BookResponseDetail::new).collect(Collectors.toList());
     }
 
     /* Getters */

@@ -14,16 +14,20 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/autor")
+@RequestMapping("/autor") // Endpoint
 public class AuthorController {
 
+    /* Dependencies Injection */
     @Autowired
     private AuthorRepository repository;
 
+    /* Methods */
+    // POST Request - Register an author
     @PostMapping
     @Transactional
-    public void addAuthor(@RequestBody @Valid AddAuthorRequest request) {
+    public void addAuthor(@RequestBody @Valid AuthorRequest request) {
         AuthorModel author = request.toModel();
         repository.save(author);
     }
+
 }

@@ -14,15 +14,18 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/categoria") // Endpoint
 public class CategoryController {
 
+    /* Dependencies Injection */
     @Autowired
     private CategoryRepository repository;
 
+    /* Methods */
+    // POST Request - Register a category
     @PostMapping
     @Transactional
-    public void addCategory(@RequestBody @Valid AddCategoryRequest request) {
+    public void addCategory(@RequestBody @Valid CategoryRequest request) {
         CategoryModel category = request.toModel();
         repository.save(category);
     }

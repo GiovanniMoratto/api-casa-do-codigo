@@ -12,7 +12,7 @@ import javax.validation.ConstraintValidatorContext;
  * @Author giovanni.moratto
  */
 
-public class UniqueValueValidator implements ConstraintValidator<UniqueValue, String> {
+public class UniqueValueValidator implements ConstraintValidator <UniqueValue, String> {
 
     @PersistenceContext
     private EntityManager em;

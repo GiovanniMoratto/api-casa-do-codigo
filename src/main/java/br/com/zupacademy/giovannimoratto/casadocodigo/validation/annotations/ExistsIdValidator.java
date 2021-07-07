@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
  * @Author giovanni.moratto
  */
 
-public class ExistsIdValidator implements ConstraintValidator<ExistsId, Long> {
+public class ExistsIdValidator implements ConstraintValidator <ExistsId, Long> {
 
     @PersistenceContext
     private EntityManager em;
@@ -31,11 +31,12 @@ public class ExistsIdValidator implements ConstraintValidator<ExistsId, Long> {
             return false;
         }
 
-        Query query = em.createQuery("SELECT 1 FROM " + object + " WHERE ID = :VALUE");
+        Query query = em.createQuery("SELECT 1 FROM " + object + " o WHERE o.id = :VALUE");
         query.setParameter("VALUE", id);
 
         exists = !query.getResultList().isEmpty();
 
         return exists;
     }
+
 }

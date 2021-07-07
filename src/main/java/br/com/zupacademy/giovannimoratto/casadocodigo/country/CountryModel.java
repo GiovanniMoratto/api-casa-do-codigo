@@ -1,7 +1,6 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.country;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 /**
  * @Author giovanni.moratto
@@ -14,19 +13,18 @@ public class CountryModel {
     /* Attributes */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`ID`")
+    @Column(name = "ID")
     private Long id;
-    @NotBlank
-    @Column(name = "`NOME`", nullable = false, unique = true)
+    @Column(name = "NOME", nullable = false, unique = true)
     private String name;
 
     /* Constructor */
-    //Default
+    // Default - JPA
     @Deprecated
     public CountryModel() {
     }
 
-    //Method toModel() * AddCountryRequest(DTO) to CountryModel(Model)
+    // Method toModel() * CountryRequest.class to CountryModel.class
     public CountryModel(String name) {
         this.name = name;
     }

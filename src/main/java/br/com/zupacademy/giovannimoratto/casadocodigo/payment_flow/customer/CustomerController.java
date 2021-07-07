@@ -1,6 +1,7 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.state;
+package br.com.zupacademy.giovannimoratto.casadocodigo.payment_flow.customer;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryRepository;
+import br.com.zupacademy.giovannimoratto.casadocodigo.state.StateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,22 +16,24 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/estado") // Endpoint
-public class StateController {
+@RequestMapping("/cliente") // Endpoint
+public class CustomerController {
 
     /* Dependencies Injection */
     @Autowired
-    private StateRepository repository;
+    private CustomerRepository repository;
     @Autowired
     private CountryRepository countryRepository;
+    @Autowired
+    private StateRepository stateRepository;
 
     /* Methods */
-    // POST Request - Register a state
+    // POST Request - Register a customer
     @PostMapping
     @Transactional
-    public void addState(@RequestBody @Valid StateRequest request) {
-        StateModel state = request.toModel(countryRepository);
-        repository.save(state);
+    public void addCategory(@RequestBody @Valid CustomerRequest request) {
+        CustomerModel customer = request.toModel(countryRepository, stateRepository);
+        repository.save(customer);
     }
 
 }

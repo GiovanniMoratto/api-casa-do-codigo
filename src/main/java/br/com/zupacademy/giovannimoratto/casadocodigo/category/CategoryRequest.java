@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
  * @Author giovanni.moratto
  */
 
-public class AddCategoryRequest {
+public class CategoryRequest {
 
     /* Attributes */
     @NotBlank
@@ -16,7 +16,7 @@ public class AddCategoryRequest {
     private String name;
 
     /* Methods */
-    //Convert request in Model
+    // Convert CategoryRequest.class in CategoryModel.class
     public CategoryModel toModel() {
         return new CategoryModel(name);
     }

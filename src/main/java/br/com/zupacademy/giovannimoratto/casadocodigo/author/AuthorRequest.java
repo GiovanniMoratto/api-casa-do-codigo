@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
  * @Author giovanni.moratto
  */
 
-public class AddAuthorRequest {
+public class AuthorRequest {
 
     /* Attributes */
     @NotBlank
@@ -24,7 +24,7 @@ public class AddAuthorRequest {
     private String description;
 
     /* Methods */
-    //Convert request in Model
+    // Convert AuthorRequest.class in AuthorModel.class
     public AuthorModel toModel() {
         return new AuthorModel(name, email, description);
     }

@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.state;
+package br.com.zupacademy.giovannimoratto.casadocodigo.payment_flow.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface StateRepository extends JpaRepository <StateModel, Long> {
+public interface CustomerRepository extends JpaRepository <CustomerModel, Long> {
 
 }
