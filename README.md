@@ -6,6 +6,7 @@
 
 ## Rotas
 
+
 ### Autor
 
 #### Cadastrar um novo autor
@@ -34,6 +35,7 @@
 }
 ```
 
+
 ### Categoria
 
 #### Cadastrar uma nova categoria
@@ -57,6 +59,7 @@
     "name": "Manga"
 }
 ```
+
 
 ### Livro
 
@@ -114,6 +117,7 @@
 
 + Response 200 (application/json)
 
+
 ### País
 
 #### Cadastrar um novo país
@@ -139,6 +143,7 @@
 }
 ```
 
+
 ### Estado
 
 #### Cadastrar um novo estado
@@ -162,6 +167,5 @@
 {
     "name": "British Columbia",
     "idCountry": 1
-
 }
 ```
