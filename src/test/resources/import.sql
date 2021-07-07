@@ -8,3 +8,9 @@ INSERT INTO `tb_categorias`(nome) VALUES('Duplicated');
 
 INSERT INTO `tb_livros`(titulo, resumo, sumario, preco, numero_paginas, isbn, data_publicacao, id_categoria, id_autor) VALUES('The Hobbit','a','a',60,600,'a','2021-10-24',1,1);
 INSERT INTO `tb_livros`(titulo, resumo, sumario, preco, numero_paginas, isbn, data_publicacao, id_categoria, id_autor) VALUES('Title duplicated','b','b',60,600,'isbn duplicated','2021-10-24',2,2);
+
+INSERT INTO `tb_paises`(nome) VALUES('Germany');
+INSERT INTO `tb_paises`(nome) VALUES('Duplicated');
+
+INSERT INTO `tb_estados`(nome, id_pais) VALUES('Rio de Janeiro', 1);
+INSERT INTO `tb_estados`(nome, id_pais) VALUES('Duplicated', 2);

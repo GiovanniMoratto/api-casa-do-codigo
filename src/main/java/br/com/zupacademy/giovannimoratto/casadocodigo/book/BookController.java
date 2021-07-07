@@ -21,13 +21,13 @@ public class BookController {
 
     /* Dependencies Injection */
     @Autowired
-    BookRepository repository;
+    private BookRepository repository;
 
     @Autowired
-    AuthorRepository authorRepository;
+    private AuthorRepository authorRepository;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     /* Methods */
     // POST Request - Register a book

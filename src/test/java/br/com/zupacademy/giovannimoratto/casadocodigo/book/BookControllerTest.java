@@ -36,7 +36,7 @@ class BookControllerTest {
 
     // Test Config
     private final String urlTemplate = "/livro";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /* Methods */
     // POST Request
@@ -369,7 +369,7 @@ class BookControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with empty PUBLICATION DATE")
-    void publicationDateFormatStatus400() throws Exception {
+    void publicationDateEmptyStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("test12");

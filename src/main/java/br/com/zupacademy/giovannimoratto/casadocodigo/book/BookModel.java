@@ -35,10 +35,10 @@ public class BookModel {
     @Column(name = "DATA_PUBLICACAO", nullable = false)
     private LocalDate publicationDate;
     @ManyToOne
-    @JoinColumn (name = "ID_CATEGORIA", nullable = false)
+    @JoinColumn(name = "ID_CATEGORIA", nullable = false)
     private CategoryModel category;
     @ManyToOne
-    @JoinColumn (name = "ID_AUTOR", nullable = false)
+    @JoinColumn(name = "ID_AUTOR", nullable = false)
     private AuthorModel author;
 
     /* Constructors */

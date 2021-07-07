@@ -22,7 +22,7 @@ public class BookRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "title", className = BookModel.class)
+    @UniqueValue(attributeName = "title", entityName = BookModel.class)
     private String title;
     @NotBlank
     @Size(max = 500)
@@ -35,7 +35,7 @@ public class BookRequest {
     @Min(100)
     private Integer numberOfPages;
     @NotBlank
-    @UniqueValue(attributeName = "isbn", className = BookModel.class)
+    @UniqueValue(attributeName = "isbn", entityName = BookModel.class)
     private String isbn;
     @Future
     @NotNull

@@ -1,5 +1,7 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations;
 
+import br.com.zupacademy.giovannimoratto.casadocodigo.state.StateModel;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -7,6 +9,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
@@ -15,15 +18,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Retention(RUNTIME)
-@Target({FIELD})
-@Constraint(validatedBy = {UniqueValueValidator.class})
-public @interface UniqueValue {
+@Target({TYPE, FIELD})
+@Constraint(validatedBy = {UniqueStateInCountryValidator.class})
+public @interface UniqueStateInCountry {
 
-    Class <?> entityName();
+    Class <StateModel> entityName();
 
-    String attributeName();
-
-    String message() default "This value already exists!";
+    String message() default "This State value already exists for this Country!";
 
     Class <?>[] groups() default {};
 

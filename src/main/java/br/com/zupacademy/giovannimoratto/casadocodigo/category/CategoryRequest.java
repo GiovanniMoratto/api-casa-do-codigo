@@ -12,7 +12,7 @@ public class CategoryRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "name", className = CategoryModel.class)
+    @UniqueValue(attributeName = "name", entityName = CategoryModel.class)
     private String name;
 
     /* Methods */

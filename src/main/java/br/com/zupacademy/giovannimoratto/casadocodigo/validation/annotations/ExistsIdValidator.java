@@ -25,7 +25,7 @@ public class ExistsIdValidator implements ConstraintValidator <ExistsId, Long> {
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext context) {
-        boolean exists = false;
+        boolean exists;
 
         if (id == null) {
             return false;

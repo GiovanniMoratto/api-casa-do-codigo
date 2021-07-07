@@ -17,7 +17,7 @@ public class AuthorRequest {
     private String name;
     @NotBlank
     @Email
-    @UniqueValue(attributeName = "email", className = AuthorModel.class)
+    @UniqueValue(attributeName = "email", entityName = AuthorModel.class)
     private String email;
     @NotBlank
     @Size(max = 400)

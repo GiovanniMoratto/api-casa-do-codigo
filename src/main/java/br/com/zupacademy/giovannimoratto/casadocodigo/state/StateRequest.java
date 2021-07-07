@@ -3,7 +3,7 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryModel;
 import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryRepository;
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.ExistsId;
-import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
+import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueStateInCountry;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
@@ -14,11 +14,11 @@ import java.util.Optional;
  * @Author giovanni.moratto
  */
 
+@UniqueStateInCountry(entityName = StateModel.class)
 public class StateRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "name", className = StateModel.class)
     private String name;
     @NotNull
     @ExistsId(className = CountryModel.class)
@@ -45,12 +45,12 @@ public class StateRequest {
         this.name = name;
     }
 
-    public Long getIdPais() {
+    public Long getIdCountry() {
         return idCountry;
     }
 
-    public void setIdPais(Long idPais) {
-        this.idCountry = idPais;
+    public void setIdCountry(Long idCountry) {
+        this.idCountry = idCountry;
     }
 
 }

@@ -17,10 +17,10 @@ public class StateModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "NOME", nullable = false, unique = true)
+    @Column(name = "NOME", nullable = false)
     private String name;
     @ManyToOne
-    @JoinColumn (name = "ID_PAIS", nullable = false)
+    @JoinColumn(name = "ID_PAIS", nullable = false)
     private CountryModel country;
 
     /* Constructor */

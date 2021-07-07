@@ -12,7 +12,7 @@ public class CountryRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "name", className = CountryModel.class)
+    @UniqueValue(attributeName = "name", entityName = CountryModel.class)
     private String name;
 
     /* Methods */

@@ -1,4 +1,4 @@
-package br.com.zupacademy.giovannimoratto.casadocodigo.author;
+package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -17,10 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
  * @Author giovanni.moratto
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class AuthorControllerTest {
+class StateControllerTest {
 
     /* Injections */
     @Autowired
@@ -30,18 +30,17 @@ class AuthorControllerTest {
     ObjectMapper objectMapper;
 
     // Test Config
-    private final String urlTemplate = "/autor";
+    private final String urlTemplate = "/estado";
 
     /* Methods */
     // POST Request
     @Test
-    @DisplayName("200 OK - Succeed and persist the Author in the Database")
-    void createAuthorStatus200() throws Exception {
+    @DisplayName("200 OK - Succeed and persist the State in the Database")
+    void createStateStatus200() throws Exception {
         // Values to Success Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("Fulano de Tal");
-        request.setEmail("fulano@email.com");
-        request.setDescription("bla bla bla");
+        StateRequest request = new StateRequest();
+        request.setName("Quebec");
+        request.setIdCountry(1L);
         String jsonRequest = objectMapper.writeValueAsString(request);
 
         mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
@@ -56,13 +55,12 @@ class AuthorControllerTest {
     @DisplayName("404 Not Found - When trying to POST with invalid ENDPOINT")
     void invalidEndpointStatus404() throws Exception {
         // Values to Success Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("Goku");
-        request.setEmail("goku@email.com");
-        request.setDescription("bla bla bla");
+        StateRequest request = new StateRequest();
+        request.setName("Ontario");
+        request.setIdCountry(1L);
         String jsonRequest = objectMapper.writeValueAsString(request);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/playstation")       // <---------- FAIL
+        mockMvc.perform(MockMvcRequestBuilders.post("/hello")       // <---------- FAIL
                 .content(jsonRequest)
                 .characterEncoding("UTF-8")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -88,10 +86,9 @@ class AuthorControllerTest {
     @DisplayName("400 Bad Request - When trying to POST with empty NAME")
     void nameEmptyStatus400() throws Exception {
         // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
+        StateRequest request = new StateRequest();
         request.setName("");       // <---------- FAIL
-        request.setEmail("test01@email.com");
-        request.setDescription("test01");
+        request.setIdCountry(1L);
         String jsonRequest = objectMapper.writeValueAsString(request);
 
         mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
@@ -103,13 +100,12 @@ class AuthorControllerTest {
 
     // POST Request
     @Test
-    @DisplayName("400 Bad Request - When trying to POST with empty EMAIL")
-    void emailEmptyStatus400() throws Exception {
+    @DisplayName("400 Bad Request - When trying to POST with a NAME already registered in the same COUNTRY")
+    void nameUniqueForStateStatus400() throws Exception {
         // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("test02");
-        request.setEmail("");       // <---------- FAIL
-        request.setDescription("test02");
+        StateRequest request = new StateRequest();
+        request.setName("Duplicated");       // <---------- FAIL
+        request.setIdCountry(2L);
         String jsonRequest = objectMapper.writeValueAsString(request);
 
         mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
@@ -121,67 +117,29 @@ class AuthorControllerTest {
 
     // POST Request
     @Test
-    @DisplayName("400 Bad Request - When trying to POST with an invalid format EMAIL")
-    void emailFormatStatus400() throws Exception {
-        // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("test03");
-        request.setEmail("test03");       // <---------- FAIL
-        request.setDescription("test03");
+    @DisplayName("200 OK - When trying to POST with a NAME already registered but in different COUNTRY")
+    void sameNameDifferentStateStatus200() throws Exception {
+        // Values to Success Test
+        StateRequest request = new StateRequest();
+        request.setName("Duplicated");
+        request.setIdCountry(1L);
         String jsonRequest = objectMapper.writeValueAsString(request);
 
         mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
                 .content(jsonRequest)
                 .characterEncoding("UTF-8")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(400));
+                .andExpect(MockMvcResultMatchers.status().is(200));
     }
 
     // POST Request
     @Test
-    @DisplayName("400 Bad Request - When trying to POST with an EMAIL already registered")
-    void emailUniqueStatus400() throws Exception {
+    @DisplayName("400 Bad Request - When trying to POST with empty COUNTRY")
+    void countryEmptyStatus400() throws Exception {
         // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("test04");
-        request.setEmail("duplicate_email@email.com");       // <---------- FAIL
-        request.setDescription("test04");
-        String jsonRequest = objectMapper.writeValueAsString(request);
-
-        mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
-                .content(jsonRequest)
-                .characterEncoding("UTF-8")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(400));
-    }
-
-    // POST Request
-    @Test
-    @DisplayName("400 Bad Request - When trying to POST with empty DESCRIPTION")
-    void descriptionEmptyStatus400() throws Exception {
-        // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("test05");
-        request.setEmail("test05@email.com");
-        request.setDescription("");       // <---------- FAIL
-        String jsonRequest = objectMapper.writeValueAsString(request);
-
-        mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)
-                .content(jsonRequest)
-                .characterEncoding("UTF-8")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(400));
-    }
-
-    // POST Request
-    @Test
-    @DisplayName("400 Bad Request - When trying to POST with a DESCRIPTION longer than 400 characters")
-    void descriptionSizeStatus400() throws Exception {
-        // Values to Fail Test
-        AuthorRequest request = new AuthorRequest();
-        request.setName("test06");
-        request.setEmail("test06@email.com");
-        request.setDescription("a".repeat(401));       // <---------- FAIL
+        StateRequest request = new StateRequest();
+        request.setName("São Paulo");
+        request.setIdCountry(null);       // <---------- FAIL
         String jsonRequest = objectMapper.writeValueAsString(request);
 
         mockMvc.perform(MockMvcRequestBuilders.post(urlTemplate)

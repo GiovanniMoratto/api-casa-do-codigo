@@ -23,7 +23,7 @@ public class UniqueValueValidator implements ConstraintValidator <UniqueValue, S
 
     @Override
     public void initialize(UniqueValue constraintAnnotation) {
-        object = constraintAnnotation.className().getSimpleName();
+        object = constraintAnnotation.entityName().getSimpleName();
         field = constraintAnnotation.attributeName();
     }
 
