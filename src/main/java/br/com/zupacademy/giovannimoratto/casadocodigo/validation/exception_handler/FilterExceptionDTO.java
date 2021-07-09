@@ -7,8 +7,8 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.validation.exception_hand
 public class FilterExceptionDTO {
 
     /* Attributes */
-    private String field;
-    private String error;
+    private final String field;
+    private final String error;
 
     /* Constructor */
     public FilterExceptionDTO(String field, String error) {
@@ -22,16 +22,8 @@ public class FilterExceptionDTO {
         return field;
     }
 
-    public void setField(String field) {
-        this.field = field;
-    }
-
     public String getError() {
         return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
 }

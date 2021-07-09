@@ -97,7 +97,7 @@
     "isbn": "XXXXXXXX",
     "publicationDate": "30-12-2050",
     "idCategory": 1,
-    "idAuthor": 1,
+    "idAuthor": 1
 }
 ```
 

@@ -110,7 +110,7 @@ class StateControllerTest {
                 .content(jsonRequest)
                 .characterEncoding("UTF-8")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().is(400));
+                .andExpect(MockMvcResultMatchers.status().is(200));
     }
 
     // POST Request
