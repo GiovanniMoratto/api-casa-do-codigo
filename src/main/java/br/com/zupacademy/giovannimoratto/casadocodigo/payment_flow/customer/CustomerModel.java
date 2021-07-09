@@ -65,6 +65,13 @@ public class CustomerModel {
         this.zipCode = zipCode;
     }
 
+    @Override
+    public String toString() {
+        return "CustomerModel{" +
+               "id=" + id +
+               '}';
+    }
+
     /* Getters and Setters */
     // Setter to CustomerRequest.class
     public void setState(StateModel state) {

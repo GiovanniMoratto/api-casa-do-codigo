@@ -25,9 +25,11 @@ public class CustomerController {
     // POST Request - Register a customer
     @PostMapping
     @Transactional
-    public void addCategory(@RequestBody @Valid CustomerRequest request) {
+    public String addCategory(@RequestBody @Valid CustomerRequest request) {
         CustomerModel customer = request.toModel(em);
         em.persist(customer);
+
+        return customer.toString();
     }
 
 }
