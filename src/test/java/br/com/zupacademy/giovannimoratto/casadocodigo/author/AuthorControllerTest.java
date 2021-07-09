@@ -22,15 +22,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc
 class AuthorControllerTest {
 
+    /* Test Endpoint Config */
+    private final String urlTemplate = "/autor";
     /* Injections */
     @Autowired
     MockMvc mockMvc;
-
     @Autowired
     ObjectMapper objectMapper;
-
-    // Test Config
-    private final String urlTemplate = "/autor";
 
     /* Methods */
     // POST Request
@@ -122,7 +120,7 @@ class AuthorControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with an invalid format EMAIL")
-    void emailFormatStatus400() throws Exception {
+    void emailInvalidFormatStatus400() throws Exception {
         // Values to Fail Test
         AuthorRequest request = new AuthorRequest();
         request.setName("test03");
@@ -140,7 +138,7 @@ class AuthorControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with an EMAIL already registered")
-    void emailUniqueStatus400() throws Exception {
+    void emailNotUniqueStatus400() throws Exception {
         // Values to Fail Test
         AuthorRequest request = new AuthorRequest();
         request.setName("test04");

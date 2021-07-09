@@ -2,24 +2,22 @@ package br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import java.lang.annotation.*;
 
 /**
  * @Author giovanni.moratto
  */
 
 @Documented
-@Retention(RUNTIME)
-@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Constraint(validatedBy = {ExistsIdValidator.class})
+@Target({
+        ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR,
+        ElementType.PARAMETER, ElementType.TYPE_USE
+})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ExistsId {
 
-    Class <?> className();
+    Class <?> domainClass();
 
     String message() default "This ID does not exists!";
 

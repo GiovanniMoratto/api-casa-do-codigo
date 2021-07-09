@@ -17,7 +17,7 @@ public class AuthorRequest {
     private String name;
     @NotBlank
     @Email
-    @UniqueValue(attributeName = "email", entityName = AuthorModel.class)
+    @UniqueValue(fieldName = "email", domainClass = AuthorModel.class)
     private String email;
     @NotBlank
     @Size(max = 400)
@@ -30,6 +30,7 @@ public class AuthorRequest {
     }
 
     /* Getters and Setters */
+
     public String getName() {
         return name;
     }

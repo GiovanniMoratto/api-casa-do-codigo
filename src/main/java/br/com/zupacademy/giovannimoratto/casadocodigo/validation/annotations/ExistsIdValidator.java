@@ -20,23 +20,18 @@ public class ExistsIdValidator implements ConstraintValidator <ExistsId, Long> {
 
     @Override
     public void initialize(ExistsId constraintAnnotation) {
-        object = constraintAnnotation.className().getSimpleName();
+        object = constraintAnnotation.domainClass().getSimpleName();
     }
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext context) {
-        boolean exists;
-
         if (id == null) {
-            return false;
+            return true;
         }
-
         Query query = em.createQuery("SELECT 1 FROM " + object + " o WHERE o.id = :VALUE");
         query.setParameter("VALUE", id);
 
-        exists = !query.getResultList().isEmpty();
-
-        return exists;
+        return !query.getResultList().isEmpty();
     }
 
 }

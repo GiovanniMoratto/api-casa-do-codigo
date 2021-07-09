@@ -20,23 +20,23 @@ public class CustomerModel {
     private Long id;
     @Column(name = "EMAIL", nullable = false)
     private String email;
-    @Column(name = "PRIMEIRO_NOME", nullable = false)
+    @Column(name = "NOME", nullable = false)
     private String firstName;
-    @Column(name = "ULTIMO_NOME",nullable = false)
+    @Column(name = "SOBRENOME", nullable = false)
     private String lastName;
-    @Column(name = "CPF_CNPJ",nullable = false)
+    @Column(name = "CPF_CNPJ", nullable = false)
     private String document;
-    @Column(name = "ENDERECO",nullable = false)
+    @Column(name = "ENDERECO", nullable = false)
     private String address;
-    @Column(name = "COMPLEMENTO",nullable = false)
+    @Column(name = "COMPLEMENTO", nullable = false)
     private String complement;
     @Column(name = "CIDADE", nullable = false)
     private String city;
     @ManyToOne
-    @JoinColumn (name = "ID_PAIS")
+    @JoinColumn(name = "ID_PAIS")
     private CountryModel country;
     @ManyToOne
-    @JoinColumn (name = "ID_ESTADO")
+    @JoinColumn(name = "ID_ESTADO")
     private StateModel state;
     @Column(name = "TELEFONE", nullable = false)
     private String phoneNumber;
@@ -51,7 +51,7 @@ public class CustomerModel {
 
     // Method toModel() * CustomerRequest.class to CustomerModel.class
     public CustomerModel(String email, String firstName, String lastName, String document, String address,
-                         String complement, String city, CountryModel country, StateModel state, String phoneNumber,
+                         String complement, String city, CountryModel country, String phoneNumber,
                          String zipCode) {
         this.email = email;
         this.firstName = firstName;
@@ -61,9 +61,13 @@ public class CustomerModel {
         this.complement = complement;
         this.city = city;
         this.country = country;
-        this.state = state;
         this.phoneNumber = phoneNumber;
         this.zipCode = zipCode;
     }
 
+    /* Getters and Setters */
+    // Setter to CustomerRequest.class
+    public void setState(StateModel state) {
+        this.state = state;
+    }
 }

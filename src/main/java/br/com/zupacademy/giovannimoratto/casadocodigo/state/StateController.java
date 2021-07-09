@@ -1,9 +1,10 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.state;
 
-import br.com.zupacademy.giovannimoratto.casadocodigo.country.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -15,20 +16,16 @@ import javax.validation.Valid;
 @RequestMapping("/estado") // Endpoint
 public class StateController {
 
-    /* Dependencies Injection */
-    @Autowired
-    private StateRepository repository;
-
-    @Autowired
-    private CountryRepository countryRepository;
+    @PersistenceContext
+    private EntityManager em;
 
     /* Methods */
     // POST Request - Register a state
     @PostMapping
     @Transactional
     public void addState(@RequestBody @Valid StateRequest request) {
-        StateModel state = request.toModel(countryRepository);
-        repository.save(state);
+        StateModel state = request.toModel(em);
+        em.persist(state);
     }
 
 }

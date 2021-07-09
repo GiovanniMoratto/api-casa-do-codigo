@@ -27,16 +27,14 @@ import java.time.format.DateTimeFormatter;
 @AutoConfigureMockMvc
 class BookControllerTest {
 
+    /* Test Endpoint Config and Date format */
+    private final String urlTemplate = "/livro";
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /* Injections */
     @Autowired
     MockMvc mockMvc;
-
     @Autowired
     ObjectMapper objectMapper;
-
-    // Test Config
-    private final String urlTemplate = "/livro";
-    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /* Methods */
     // POST Request
@@ -128,7 +126,7 @@ class BookControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with a TITLE already registered")
-    void titleUniqueStatus400() throws Exception {
+    void titleNotUniqueStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("Title duplicated");       // <---------- FAIL
@@ -320,7 +318,7 @@ class BookControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with a ISBN already registered")
-    void isbnUniqueStatus400() throws Exception {
+    void isbnNotUniqueStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("test10");
@@ -345,7 +343,7 @@ class BookControllerTest {
     @Test
     @DisplayName("400 Bad Request - When trying to POST a PUBLICATION DATE with current date or earlier than the " +
                  "present date")
-    void publicationDateFutureStatus400() throws Exception {
+    void publicationDateNotFutureStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("test11");
@@ -417,7 +415,7 @@ class BookControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with an unregistered CATEGORY")
-    void idCategoryExistsStatus400() throws Exception {
+    void idCategoryNotExistStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("test14");
@@ -465,7 +463,7 @@ class BookControllerTest {
     // POST Request
     @Test
     @DisplayName("400 Bad Request - When trying to POST with an unregistered AUTHOR")
-    void idAuthorExistsStatus400() throws Exception {
+    void idAuthorNotExistStatus400() throws Exception {
         // Values to Fail Test
         BookRequest request = new BookRequest();
         request.setTitle("test14");

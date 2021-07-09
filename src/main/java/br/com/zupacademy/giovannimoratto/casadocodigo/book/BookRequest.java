@@ -1,18 +1,16 @@
 package br.com.zupacademy.giovannimoratto.casadocodigo.book;
 
 import br.com.zupacademy.giovannimoratto.casadocodigo.author.AuthorModel;
-import br.com.zupacademy.giovannimoratto.casadocodigo.author.AuthorRepository;
 import br.com.zupacademy.giovannimoratto.casadocodigo.category.CategoryModel;
-import br.com.zupacademy.giovannimoratto.casadocodigo.category.CategoryRepository;
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.ExistsId;
 import br.com.zupacademy.giovannimoratto.casadocodigo.validation.annotations.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 /**
  * @Author giovanni.moratto
@@ -22,7 +20,7 @@ public class BookRequest {
 
     /* Attributes */
     @NotBlank
-    @UniqueValue(attributeName = "title", entityName = BookModel.class)
+    @UniqueValue(fieldName = "title", domainClass = BookModel.class)
     private String title;
     @NotBlank
     @Size(max = 500)
@@ -35,46 +33,26 @@ public class BookRequest {
     @Min(100)
     private Integer numberOfPages;
     @NotBlank
-    @UniqueValue(attributeName = "isbn", entityName = BookModel.class)
+    @UniqueValue(fieldName = "isbn", domainClass = BookModel.class)
     private String isbn;
     @Future
     @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate publicationDate;
     @NotNull
-    @ExistsId(className = CategoryModel.class)
+    @ExistsId(domainClass = CategoryModel.class)
     private Long idCategory;
     @NotNull
-    @ExistsId(className = AuthorModel.class)
+    @ExistsId(domainClass = AuthorModel.class)
     private Long idAuthor;
 
     /* Methods */
     // Convert BookRequest.class in BookModel.class
-    public BookModel toModel(AuthorRepository authorRepository, CategoryRepository categoryRepository) throws ResponseStatusException {
-        Optional <CategoryModel> categoryOptional = categoryRepository.findById(idCategory);
-        Optional <AuthorModel> authorOptional = authorRepository.findById(idAuthor);
-        CategoryModel category;
-        AuthorModel author;
-        if (categoryOptional.isPresent() & authorOptional.isPresent()) {
-            category = categoryOptional.get();
-            author = authorOptional.get();
-        }
-        else {
-            category = categoryOptional.orElse(null);
-            author = authorOptional.orElse(null);
-        }
-        return new BookModel(
-                title,
-                overview,
-                summary,
-                price,
-                numberOfPages,
-                isbn,
-                publicationDate,
-                category,
-                author
-        );
+    public BookModel toModel(EntityManager em) throws ResponseStatusException {
+        CategoryModel category = em.find(CategoryModel.class, idCategory);
+        AuthorModel author = em.find(AuthorModel.class, idAuthor);
 
+        return new BookModel(title, overview, summary, price, numberOfPages, isbn, publicationDate, category, author);
     }
 
     /* Getters and Setters */

@@ -25,7 +25,7 @@ public class UniqueStateInCountryValidator implements ConstraintValidator <Uniqu
 
     @Override
     public void initialize(UniqueStateInCountry annotation) {
-        state = annotation.entityName();
+        state = annotation.domainClass();
     }
 
     @Override
