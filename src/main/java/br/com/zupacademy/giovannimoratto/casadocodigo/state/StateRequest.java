@@ -24,23 +24,11 @@ public class StateRequest {
 
     /* Methods */
     // Convert StateRequest.class in StateModel.class
-    public StateModel toModel(EntityManager em){
+    public StateModel toModel(EntityManager em) {
         CountryModel country = em.find(CountryModel.class, idCountry);
 
         return new StateModel(name, country);
     }
-    /*
-    public StateModel toModel(CountryRepository countryRepository) throws ResponseStatusException {
-        Optional <CountryModel> countryOptional = countryRepository.findById(idCountry);
-        CountryModel country;
-        country = countryOptional.orElseGet(() -> countryOptional.orElse(null));
-        return new StateModel(
-                name,
-                country
-        );
-    }
-
-     */
 
     /* Getters and Setters */
     public String getName() {

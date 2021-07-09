@@ -77,4 +77,5 @@ public class CustomerModel {
     public void setState(StateModel state) {
         this.state = state;
     }
+
 }

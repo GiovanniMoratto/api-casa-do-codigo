@@ -30,7 +30,6 @@ public class AuthorRequest {
     }
 
     /* Getters and Setters */
-
     public String getName() {
         return name;
     }
